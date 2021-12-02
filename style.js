@@ -15,20 +15,9 @@ export default styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: 15,
   },
-  map: {
-    borderWidth: 1,
-    borderColor: "white",
-    width: "80%",
-    aspectRatio: 1,
-  },
+  map: { width: "80%", aspectRatio: 1,},
   row: {flex:1, flexDirection:"row"},
-  cell: {
-    flex: 1,
-    width: 100,
-    height: 100,
-    borderWidth: 1,
-    borderColor: "red",
-  },
+  cell: { flex: 1, width: 100, height: 100, },
   circle: {
     flex:1,
     borderRadius: 50,
