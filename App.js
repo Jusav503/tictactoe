@@ -26,19 +26,24 @@ export default function App() {
 
     setCurrentTurn(currentTurn == "o" ? "x" : "o");
 
-    checkWinningState();
+    const winner = getWinner();
+    if(winner){
+      gameWon(winner);
+    }else{
+      checkTieState();
+    }
   };
 
-  const checkWinningState = () => {
+  const getWinner = () => {
     //Row result
     for (let i = 0; i < 3; i++) {
       const isRowOWinning = gameMap[i].every((cell) => cell == "o");
       const isRowXWinning = gameMap[i].every((cell) => cell == "x");
       if (isRowOWinning) {
-        gameWon("o");
+        return "o";
       }
       if (isRowXWinning) {
-        gameWon("x");
+        return "x";
       }
     }
     //End Row result
@@ -57,12 +62,10 @@ export default function App() {
         }
       }
       if (isColumnOWinner) {
-        gameWon("o");
-        break;
+        return "o";
       }
       if (isColumnXWinner) {
-        gameWon("x");
-        break;
+        return "x";
       }
     }
     //End column result
@@ -89,10 +92,10 @@ export default function App() {
       }
     }
     if (isDiagonal1oWinnning || isDiagonal2oWinnning) {
-      gameWon("o");
+      return "o";
     }
     if (isDiagonal1xWinnning || isDiagonal2xWinnning) {
-      gameWon("x");
+      return "x";
     }
     //End diagonal result
   };
@@ -104,10 +107,20 @@ export default function App() {
     ]);
     setCurrentTurn("o");
   };
+  const checkTieState = () => {
+    if(!gameMap.some((row) => row.some((cell) => cell == ""))){
+      Alert.alert('Tie?',"Ok, let's do it again", [
+        {
+          text: "REMATCH",
+          onPress: resetGame
+        },
+      ]);  
+    }
+  }
   const gameWon = (player) => {
-    Alert.alert('Woohoo!',`Player '${player}' won`, [
+    Alert.alert(`'${player}' winner`,'Rematch?', [
       {
-        text: "Reset game",
+        text: "REMATCH",
         onPress: resetGame
       },
     ]);
@@ -116,11 +129,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <ImageBackground
-        source={bg}
-        style={styles.background}
-        resizeMode="contain"
-      >
+      <ImageBackground source={bg} style={styles.background} resizeMode="contain">
         <View style={styles.map}>
           {gameMap.map((row, rowIndex) => (
             <View key={`row-${rowIndex}`} style={styles.row}>
@@ -134,9 +143,7 @@ export default function App() {
                   {cell == "x" && (
                     <View style={styles.cross}>
                       <View style={styles.crossLine} />
-                      <View
-                        style={[styles.crossLine, styles.crossLineReversed]}
-                      />
+                      <View style={[styles.crossLine, styles.crossLineReversed]} />
                     </View>
                   )}
                 </Pressable>
