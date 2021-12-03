@@ -117,11 +117,15 @@ export default function App() {
     }
   };
   const gameWon = (player) => {
-    Alert.alert(`'${player}' winner`, "Rematch?", [
+    Alert.alert(`'${player}' winner! 👑`, "Rematch?", [
       {
-        text: "REMATCH",
+        text: "REMATCH 🥊",
         onPress: resetGame,
       },
+      {
+        cancelable: true,
+        text:"No today 😐"
+      }
     ]);
   };
 
