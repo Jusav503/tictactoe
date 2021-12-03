@@ -108,11 +108,15 @@ export default function App() {
   };
   const checkTieState = () => {
     if (!gameMap.some((row) => row.some((cell) => cell == ""))) {
-      Alert.alert("Tie?", "Ok, let's do it again", [
+      Alert.alert("Tie? 🤔", "Ok, let's do it again", [
         {
-          text: "REMATCH",
+          text: "REMATCH 🥊",
           onPress: resetGame,
         },
+        {
+          cancelable: true,
+          text:"No today 😐"
+        }  
       ]);
     }
   };
