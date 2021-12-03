@@ -13,7 +13,7 @@ export default function App() {
   ]);
   const [currentTurn, setCurrentTurn] = useState("o");
 
-  const onPress = (rowIndex, columnIndex) => {
+  const pressOnTheGameMap = (rowIndex, columnIndex) => {
     if (gameMap[rowIndex][columnIndex] !== "") {
       Alert.alert("Esta casilla está ocupada, bro");
       return;
@@ -27,9 +27,9 @@ export default function App() {
     setCurrentTurn(currentTurn == "o" ? "x" : "o");
 
     const winner = getWinner();
-    if(winner){
+    if (winner) {
       gameWon(winner);
-    }else{
+    } else {
       checkTieState();
     }
   };
@@ -75,7 +75,6 @@ export default function App() {
     let isDiagonal1xWinnning = true;
     let isDiagonal2oWinnning = true;
     let isDiagonal2xWinnning = true;
-
     for (let i = 0; i < 3; i++) {
       if (gameMap[i][i] !== "o") {
         isDiagonal1oWinnning = false;
@@ -108,20 +107,20 @@ export default function App() {
     setCurrentTurn("o");
   };
   const checkTieState = () => {
-    if(!gameMap.some((row) => row.some((cell) => cell == ""))){
-      Alert.alert('Tie?',"Ok, let's do it again", [
+    if (!gameMap.some((row) => row.some((cell) => cell == ""))) {
+      Alert.alert("Tie?", "Ok, let's do it again", [
         {
           text: "REMATCH",
-          onPress: resetGame
+          onPress: resetGame,
         },
-      ]);  
+      ]);
     }
-  }
+  };
   const gameWon = (player) => {
-    Alert.alert(`'${player}' winner`,'Rematch?', [
+    Alert.alert(`'${player}' winner`, "Rematch?", [
       {
         text: "REMATCH",
-        onPress: resetGame
+        onPress: resetGame,
       },
     ]);
   };
@@ -129,21 +128,21 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <ImageBackground source={bg} style={styles.background} resizeMode="contain">
+      <ImageBackground source={bg} style={styles.background} resizeMode="contain" >
         <View style={styles.map}>
           {gameMap.map((row, rowIndex) => (
             <View key={`row-${rowIndex}`} style={styles.row}>
               {row.map((cell, columnIndex) => (
                 <Pressable
                   key={`row-${rowIndex}-col-${columnIndex}`}
-                  onPress={() => onPress(rowIndex, columnIndex)}
+                  onPress={() => pressOnTheGameMap(rowIndex, columnIndex)}
                   style={styles.cell}
                 >
                   {cell == "o" && <View style={styles.circle} />}
                   {cell == "x" && (
                     <View style={styles.cross}>
                       <View style={styles.crossLine} />
-                      <View style={[styles.crossLine, styles.crossLineReversed]} />
+                      <View style={[styles.crossLine, styles.crossLineReversed]}/>
                     </View>
                   )}
                 </Pressable>
