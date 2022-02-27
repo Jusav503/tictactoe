@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Alert, ImageBackground, Pressable, View } from "react-native";
+import { Alert, ImageBackground, Pressable, View, Text } from "react-native";
 
 import bg from "./assets/images/bg.jpeg";
 import styles from "./style";
@@ -137,6 +137,7 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="light" />
       <ImageBackground source={bg} style={styles.background} resizeMode="contain" >
+        <Text style={{color: "white", top: -100, fontSize:22}}>Current turn: {currentTurn}</Text>
         <View style={styles.map}>
           {gameMap.map((row, rowIndex) => (
             <View key={`row-${rowIndex}`} style={styles.row}>

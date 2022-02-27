@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const HEIGHT = Dimensions.get('window').height;
 
 export default styles = StyleSheet.create({
   container: {
@@ -10,14 +12,14 @@ export default styles = StyleSheet.create({
   },
   background: {
     width: "100%",
-    height: "100%",
+    height: HEIGHT,
     alignItems: "center",
     justifyContent: "center",
     paddingTop: 15,
   },
   map: { width: "80%", aspectRatio: 1,},
   row: {flex:1, flexDirection:"row"},
-  cell: { flex: 1, width: 100, height: 100, },
+  cell: { flex: 1, width: 100, height: HEIGHT/7.5, marginTop:-15},
   circle: {
     flex:1,
     borderRadius: 50,
@@ -30,7 +32,7 @@ export default styles = StyleSheet.create({
     position: "absolute",
     left: "42%",
     width: 10,
-    height: "100%",
+    height: HEIGHT,
     backgroundColor: "white",
     borderRadius: 5,
     transform: [
