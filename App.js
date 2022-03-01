@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Alert, ImageBackground, Pressable, View, Text } from "react-native";
 
 import bg from "./assets/images/bg.jpeg";
+import Cell from "./components/Cell";
 import styles from "./style";
 
 export default function App() {
@@ -137,23 +138,16 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="light" />
       <ImageBackground source={bg} style={styles.background} resizeMode="contain" >
+        <Text style={{color:"white", top:-100, fontSize:20}}>Current turn: "{currentTurn}"</Text>
         <View style={styles.map}>
           {gameMap.map((row, rowIndex) => (
             <View key={`row-${rowIndex}`} style={styles.row}>
               {row.map((cell, columnIndex) => (
-                <Pressable
+                <Cell
                   key={`row-${rowIndex}-col-${columnIndex}`}
-                  onPress={() => pressOnTheGameMap(rowIndex, columnIndex)}
-                  style={styles.cell}
-                >
-                  {cell == "o" && <View style={styles.circle} />}
-                  {cell == "x" && (
-                    <View style={styles.cross}>
-                      <View style={styles.crossLine} />
-                      <View style={[styles.crossLine, styles.crossLineReversed]}/>
-                    </View>
-                  )}
-                </Pressable>
+                  cell={cell}
+                  pressOnTheGameMap={() => pressOnTheGameMap(rowIndex, columnIndex)}
+                />
               ))}
             </View>
           ))}

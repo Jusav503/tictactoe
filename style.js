@@ -22,7 +22,7 @@ export default styles = StyleSheet.create({
     aspectRatio: 1, 
     // borderWidth: 1, 
     // borderColor: "red",
-    marginTop: 35,
+    marginTop: 10,
   },
 
   row: { 
