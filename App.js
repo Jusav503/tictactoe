@@ -137,7 +137,6 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="light" />
       <ImageBackground source={bg} style={styles.background} resizeMode="contain" >
-        <Text style={{color: "white", top: -100, fontSize:22}}>Current turn: {currentTurn}</Text>
         <View style={styles.map}>
           {gameMap.map((row, rowIndex) => (
             <View key={`row-${rowIndex}`} style={styles.row}>

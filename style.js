@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const HEIGHT = Dimensions.get('window').height;
+const HEIGHT = Dimensions.get("window").height;
+const WIDTH = Dimensions.get("window").width;
 
 export default styles = StyleSheet.create({
   container: {
@@ -11,28 +12,42 @@ export default styles = StyleSheet.create({
     backgroundColor: "#242D34",
   },
   background: {
-    width: "100%",
+    width: WIDTH,
     height: HEIGHT,
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 15,
   },
-  map: { width: "80%", aspectRatio: 1,},
-  row: {flex:1, flexDirection:"row"},
-  cell: { flex: 1, width: 100, height: HEIGHT/7.5, marginTop:-15},
+  map: { 
+    width: WIDTH-70, 
+    aspectRatio: 1, 
+    // borderWidth: 1, 
+    // borderColor: "red",
+    marginTop: 35,
+  },
+
+  row: { 
+    flex: 1, 
+    flexDirection: "row",
+  },
+  cell: { 
+    flex: 1,
+    // borderColor:"green", 
+    // borderWidth: 1
+  },
+
   circle: {
-    flex:1,
+    flex: 1,
     borderRadius: 50,
     borderWidth: 10,
     borderColor: "white",
-    margin:20,
+    margin: 20,
   },
-  cross: { flex: 1, margin:15, },
+  cross: { flex: 1, margin: 20 },
   crossLine: {
     position: "absolute",
     left: "42%",
     width: 10,
-    height: HEIGHT,
+    height: "100%",
     backgroundColor: "white",
     borderRadius: 5,
     transform: [
